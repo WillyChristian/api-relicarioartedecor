@@ -12,6 +12,9 @@ const userRoute = require('./src/Routes/userRoutes.js')
 
 // CONFIGURAÇÕES DO SERVIDOR
 mongoose.connect( process.env.URL, {
+	cookie:{
+		maxAge: 10000,
+	}
 	useUnifiedTopology: true,
 	useNewUrlParser: true,
 	useCreateIndex: true
