@@ -15,7 +15,7 @@ mongoose.connect( process.env.URL, {
 	useUnifiedTopology: true,
 	useNewUrlParser: true,
 	useCreateIndex: true
-}, ()=> console.log('Server up!'))
+})
 
 //CONFIGURAÇÕES GERAIS 
 const app = express()
@@ -37,4 +37,4 @@ app.use("/user", userRoute)
 
 
 
-app.listen( process.env.PORT || 5000, ()=> console.log('Servidor ouvindo na porta 5000'))
+app.listen( process.env.PORT || 5000)
