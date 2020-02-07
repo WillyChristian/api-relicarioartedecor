@@ -4,6 +4,8 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const session = require('express-session')
 
+const testeRoute = require('./src/Routes/Testes/testeRoute')
+
 require('dotenv/config')
 
 // IMPORT DE ARQUIVOS INTERNOS
@@ -11,7 +13,7 @@ const userRoute = require('./src/Routes/userRoutes.js')
 
 
 // CONFIGURAÇÕES DO SERVIDOR
-mongoose.connect( process.env.URL,{
+mongoose.connect( process.env.URL,{ 
 	useUnifiedTopology: true,
 	useNewUrlParser: true,
 	useCreateIndex: true
@@ -19,20 +21,18 @@ mongoose.connect( process.env.URL,{
 
 //CONFIGURAÇÕES GERAIS 
 const app = express()
+app.use(bodyParser.urlencoded({ extended: true}))
+app.use( bodyParser.json())
 app.use(cors({
 	origin: " * "
 }))
-
-
 app.use(session({
 	secret: 'secret',
 	resave: false,
 	saveUninitialized: true
 }))
-app.use(bodyParser.urlencoded({ extended: true}))
-app.use( bodyParser.json())
 
-
+app.use("/teste", testeRoute)
 // ACESSOS ÀS ROTAS
 app.use("/user", userRoute)
 	

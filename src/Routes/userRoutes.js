@@ -31,13 +31,6 @@ router.post("/register", async (req, res) =>{
 	}
 })
 
-router.get("/teste", (req, res) => {
-	res.redirect('http://localhost:3000/home',
-	{
-		Origin: "*"
-	})
-})
-
 
 //   AUTENTICAÇÃO DE LOGIN
 router.post("/auth", async (req, res)=>{
