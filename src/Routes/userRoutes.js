@@ -15,9 +15,6 @@ function geraToken(params){
 }
 
 
-
-
-
 //    CADASTRAMENTO
 router.post("/register", async (req, res) =>{
 	const email = req.body.email
@@ -30,11 +27,16 @@ router.post("/register", async (req, res) =>{
 		user.senha = undefined
 		res.json({user, token: geraToken({id: user.id})})
 	}catch(err){
-			res.status(400).send({error : "Falha no cadastramento. Contate o administrador do sistema"})
+		res.status(400).send({error : "Falha no cadastramento. Contate o administrador do sistema"})
 	}
 })
 
-
+router.get("/teste", (req, res) => {
+	res.redirect('http://localhost:3000/home',
+	{
+		Origin: "*"
+	})
+})
 
 
 //   AUTENTICAÇÃO DE LOGIN

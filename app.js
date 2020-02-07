@@ -11,10 +11,7 @@ const userRoute = require('./src/Routes/userRoutes.js')
 
 
 // CONFIGURAÇÕES DO SERVIDOR
-mongoose.connect( process.env.URL, {
-	cookie:{
-		maxAge: 10000,
-	}
+mongoose.connect( process.env.URL,{
 	useUnifiedTopology: true,
 	useNewUrlParser: true,
 	useCreateIndex: true
@@ -22,22 +19,22 @@ mongoose.connect( process.env.URL, {
 
 //CONFIGURAÇÕES GERAIS 
 const app = express()
+app.use(cors({
+	origin: " * "
+}))
+
 
 app.use(session({
 	secret: 'secret',
-	resave: true,
+	resave: false,
 	saveUninitialized: true
 }))
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use( bodyParser.json())
-app.use(cors({
-	Origin: "*"
-}))
 
 
 // ACESSOS ÀS ROTAS
 app.use("/user", userRoute)
+	
 
-
-
-app.listen( process.env.PORT || 5000)
+app.listen( process.env.PORT || 5000, () => console.log('PORT 5000'))
