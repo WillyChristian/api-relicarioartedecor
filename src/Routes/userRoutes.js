@@ -41,7 +41,10 @@ router.post("/auth", async (req, res)=>{
 	if(senha !== user.senha) return res.status(401).send("Usuário ou senha incorreto(s) ou não existem.")
 	
  	user.senha = undefined
-	res.json({user, token: geraToken({id: user.id})})
+	res
+    // .redirect("http://localhost:3000/")
+    .json({ user, token: geraToken({ id: user.id }) });
+
 })
 
 module.exports = router
